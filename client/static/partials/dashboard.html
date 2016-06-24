@@ -1,0 +1,42 @@
+<div ng-controller="BucketListController" class="container">
+
+	<a href="">Bucket List</a> 
+	<a href="">Home</a> 
+	<a href="">Logout</a>
+	<br>
+
+
+	<h3>Welcome, {{userName}}!</h4>
+
+
+	<form name="listForm" ng-submit='addListItem()'>
+		<input name='title' type="text" ng-model='newItem.title' ng-minlength='5' required>
+		<input name='description' type='text' ng-model='newItem.desc' ng-minlenght='10' required>
+		<select class='browser-default' width='100%' ng-model='newItem.tagUser'>
+			<!-- <option value='' selected disabled></option> --> 
+			<option ng-repeat='user in users' value='{{user.user_name}}'>{{user.user_name}}</option>
+		</select>
+		<input type="submit" value="Add to List">
+	</form>
+
+	<div>
+		<h4>Before I die I want to...</h4>
+
+		<ul>
+			<li ng-repeat="item in lists"> 
+				<input type="checkbox" value="{{item.done}}"> {{item.taggedUser}} | {{item.title}} - {{item.description}} - {{item.createdAt | date:'MM d, yyyy'}}
+			</li>
+
+		</ul>
+
+		<br>
+
+		<h4>List of other users (Click to view profile):</h4>
+		<ul>
+			<li ng-repeat="otherUser in otherUsers">
+				<a href=""> {{otherUser.user_name}} </a>
+			</li>
+		</ul>
+
+	</div>
+</div>
